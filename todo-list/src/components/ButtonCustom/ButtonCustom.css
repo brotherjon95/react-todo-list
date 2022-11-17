@@ -1,0 +1,16 @@
+button {
+  cursor: pointer;
+  border: none;
+  margin-right: 5px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+button:hover {
+  transition: .2s;
+  transform: scale(1.05);
+}
+
+button:last-of-type {
+  margin-right: 0;
+}
