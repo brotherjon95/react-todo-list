@@ -1,10 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import list from '../data/list'
 
 export const MainContext = React.createContext()
 
 const ContextData = ({ children }) => {
-  const [todoList, setTodoList] = useState(list)
+  const [todoList, setTodoList] = useState(() => {
+    return JSON.parse(localStorage.getItem('react-todo-list')) || list
+  })
+
+  useEffect(() => {
+    const itemsFromStorage = JSON.parse(localStorage.getItem('react-todo-list'));
+
+    if (itemsFromStorage) {
+      setTodoList(itemsFromStorage);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('react-todo-list', JSON.stringify(todoList));
+  }, [todoList]);
 
   const addListItem = (id, title, finalDate, description, priority, completed) => {
     const newListItem = {
