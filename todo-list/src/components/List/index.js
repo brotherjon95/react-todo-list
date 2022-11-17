@@ -7,7 +7,7 @@ import { MainContext } from '../../context'
 import { ButtonCustom, Modal, FormHandler } from '../'
 
 const List = () => {
-  const { list, warningLowColor, warningMediumColor, warningHighColor, succesMediumColor, removeListItem } = useContext(MainContext)
+  const { list, warningLowColor, warningMediumColor, warningHighColor, succesMediumColor, removeListItem, togleCompleteListItem } = useContext(MainContext)
   const [showEditModal, setShowEditModal] = useState(false)
   const [itemForEditing, setItemForEditing] = useState({})
 
@@ -45,11 +45,17 @@ const List = () => {
     removeListItem(id)
   }
 
+  const completeItem = (e, id) => {
+    e.stopPropagation()
+
+    togleCompleteListItem(id)
+  }
+
   return <>
     {list.length > 0? <>
       <ul>
         {list.map(listItem => {
-          return <li key={listItem.id} onClick={(e) => editItem(e, listItem)}>
+          return <li key={listItem.id} onClick={(e) => editItem(e, listItem)} className={`${listItem.completed ? 'completed' : ''}`}>
             <h2>{listItem.title}</h2>
             <p>{listItem.description}</p>
             <article>
@@ -61,7 +67,7 @@ const List = () => {
               </div>
               <div>
                 <ButtonCustom onClickHandler={(e) => removeItem(e, listItem.id)} backgroundColor={warningMediumColor}>remove</ButtonCustom>
-                <ButtonCustom backgroundColor={succesMediumColor}>complete</ButtonCustom>
+                <ButtonCustom onClickHandler={(e) => completeItem(e, listItem.id)} backgroundColor={succesMediumColor}>{listItem.completed ? 'uncomplete' : 'complete'}</ButtonCustom>
               </div>
             </article>
           </li>

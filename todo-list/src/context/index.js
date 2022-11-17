@@ -41,6 +41,18 @@ const ContextData = ({ children }) => {
     setTodoList(newTodoList)
   }
 
+  const togleCompleteListItem = (id) => {
+    const newTodoList = todoList.map(item => {
+      if (item.id === id) {
+        item.completed = !item.completed
+      }
+
+      return item
+    })
+
+    setTodoList(newTodoList)
+  }
+
   let data ={
     // data
     list: todoList,
@@ -55,7 +67,8 @@ const ContextData = ({ children }) => {
     // functions
     addListItem,
     updateListItem,
-    removeListItem
+    removeListItem,
+    togleCompleteListItem
   }
 
   return <MainContext.Provider value={data}>
