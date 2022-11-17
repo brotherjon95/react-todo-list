@@ -1,13 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 // style
 import '../List/List.css'
 // context
 import { MainContext } from '../../context'
 // components
-import { ButtonCustom } from '../'
+import { ButtonCustom, Modal, FormHandler } from '../'
 
 const List = () => {
   const { list, warningLowColor, warningMediumColor, warningHighColor, succesMediumColor } = useContext(MainContext)
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [itemForEditing, setItemForEditing] = useState({})
 
   const showListItemPriority = (priorityLevel) => {
     let priorityLabel = <b>undefined</b>
@@ -29,11 +31,18 @@ const List = () => {
     return priorityLabel
   }
 
+  const editItem = (e, listItem) => {
+    e.stopPropagation()
+
+    setItemForEditing(listItem)
+
+    setShowEditModal(true)
+  }
+
   return <>
-    <h1>Todo list</h1>
     <ul>
       {list.map(listItem => {
-        return <li key={listItem.id}>
+        return <li key={listItem.id} onClick={(e) => editItem(e, listItem)}>
           <h2>{listItem.title}</h2>
           <p>{listItem.description}</p>
           <article>
@@ -51,6 +60,18 @@ const List = () => {
         </li>
       })}
     </ul>
+
+    <Modal modalVisibility={showEditModal} closeModal={() => setShowEditModal(false)} modalTitle='Edit item'>
+      <FormHandler 
+        id={itemForEditing.id} 
+        title={itemForEditing.title}
+        description={itemForEditing.description}
+        finalDate={itemForEditing.finalDate}
+        priority={itemForEditing.priority}
+        onSubmitForm={() => setShowEditModal(false)} 
+        typeOfSubmit='update-item'
+      />
+    </Modal>
   </>
 }
 

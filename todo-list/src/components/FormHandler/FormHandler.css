@@ -1,0 +1,33 @@
+.form-handler {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-handler > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.form-handler > div:nth-child(3), .form-handler > div:nth-child(4) {
+  width: 50%
+}
+
+.form-handler > div:last-of-type {
+  align-items: center;
+  padding-top: 20px;
+}
+
+.form-handler input, .form-handler textarea, .form-handler select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form-handler textarea {
+  resize: none;
+  height: 50px;
+}
