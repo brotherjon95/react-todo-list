@@ -43,3 +43,9 @@
     margin: 15px;
   }
 }
+
+@media (max-width: 580px) {
+  .modal-content .react-datepicker-wrapper > .react-datepicker__input-container > input {
+    max-width: calc(100% - 25px);
+  }
+}

@@ -19,12 +19,18 @@
 .form-handler > div:last-of-type {
   align-items: center;
   padding-top: 20px;
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .form-handler input, .form-handler textarea, .form-handler select {
   padding: 10px;
   border: 1px solid #ccc;
   font-size: 1rem;
+}
+
+.form-handler select {
+  padding: 9.5px;
 }
 
 .form-handler textarea {

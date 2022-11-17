@@ -15,7 +15,7 @@ const AddItem = () => {
     <ButtonCustom onClickHandler={() => setShowAddModal(true)} backgroundColor={lightPrimaryColor} color={darkPrimaryColor}>add item</ButtonCustom>
 
     <Modal modalVisibility={showAddModal} closeModal={() => setShowAddModal(false)} modalTitle='Add new item'>
-      <FormHandler onSubmitForm={() => setShowAddModal(false)} />
+      <FormHandler onSubmitForm={() => setShowAddModal(false)} typeOfSubmit='create-item' />
     </Modal>
   </div>
 }
