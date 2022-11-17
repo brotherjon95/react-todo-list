@@ -35,6 +35,12 @@ const ContextData = ({ children }) => {
     setTodoList(newTodoList)
   }
 
+  const removeListItem = (id) => {
+    const newTodoList = todoList.filter(item => item.id !== id)
+
+    setTodoList(newTodoList)
+  }
+
   let data ={
     // data
     list: todoList,
@@ -48,7 +54,8 @@ const ContextData = ({ children }) => {
     succesMediumColor: '#00cc00',
     // functions
     addListItem,
-    updateListItem
+    updateListItem,
+    removeListItem
   }
 
   return <MainContext.Provider value={data}>

@@ -2,10 +2,13 @@
   text-align: center;
 }
 
-h1 {
-  text-align: center;
+.add-item-wrapper h1 {
   font-size: 1.8rem;
   margin: 20px 0;
+}
+
+.add-item-wrapper h1, h3 {
+  text-align: center;
 }
 
 .add-item-wrapper > button {
